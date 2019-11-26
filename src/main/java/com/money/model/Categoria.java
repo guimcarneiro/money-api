@@ -16,14 +16,14 @@ public class Categoria {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
