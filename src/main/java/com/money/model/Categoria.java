@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Categoria {
 	
 	@Id
-	private Long id;
+	private Long codigo;
 	
 	private String nome;
 
@@ -17,14 +17,14 @@ public class Categoria {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return codigo;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	/**
