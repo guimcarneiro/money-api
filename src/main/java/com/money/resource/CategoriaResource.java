@@ -18,7 +18,7 @@ public class CategoriaResource {
 	CategoriaService categoriaService;
 	
 	@GetMapping
-	public List<Categoria> listar(){
+	public List<Categoria> listAll(){
 		return categoriaService.listAll();
 	}
 	
