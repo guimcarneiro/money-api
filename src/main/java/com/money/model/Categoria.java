@@ -13,9 +13,6 @@ import javax.validation.constraints.NotBlank;
 @Table(name="categoria")
 public class Categoria implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3505985952291451921L;
 
 	@Id
@@ -25,46 +22,45 @@ public class Categoria implements Serializable {
 	@NotBlank
 	private String nome;
 
-	/**
-	 * @return the id
-	 */
 	public Long getCodigo() {
 		return codigo;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
-	/**
-	 * @return the nome
-	 */
 	public String getNome() {
 		return nome;
 	}
 
-	/**
-	 * @param nome the nome to set
-	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
-		if(obj == null)
-			return false;
-		if(this.getClass() != obj.getClass())
-			return false;
-		
-		Categoria c = (Categoria) obj;
-		if(this.codigo.equals(c.codigo))
-			return true;
-		
-		return false;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categoria other = (Categoria) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+	
 }

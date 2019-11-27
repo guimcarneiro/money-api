@@ -32,11 +32,11 @@ public class CategoriaResource {
 	
 	@PostMapping
 	public ResponseEntity<Categoria> saveCategoria(@RequestBody Categoria categoria) {
-		Categoria c = categoriaService.save(categoria);
-		return ResponseEntity.status(HttpStatus.CREATED).body(c);
+		Categoria categoriaSalva = categoriaService.save(categoria);
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Categoria> updateCategoria(@PathVariable long id, @RequestBody Categoria categoria){
 		Optional<Categoria> c = categoriaService.update(id, categoria);
 		
@@ -46,16 +46,16 @@ public class CategoriaResource {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Categoria> getCategoriaById(@PathVariable("id") long id){
+	@GetMapping("/{id}")
+	public ResponseEntity<Categoria> getCategoriaById(@PathVariable("id") Long id){
 		Optional<Categoria> c = categoriaService.getById(id);
 		if(c.isPresent())
 			return ResponseEntity.status(HttpStatus.OK).body(c.get());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Categoria> deleteCategoriaById(@PathVariable("id") long id){
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Categoria> deleteCategoriaById(@PathVariable Long id){
 		Optional<Categoria> c = categoriaService.deleteById(id);
 		
 		if(c.isPresent())

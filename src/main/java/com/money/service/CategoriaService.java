@@ -22,18 +22,16 @@ public class CategoriaService {
 	public Categoria save(Categoria categoria) {
 		return categoriaRepository.save(categoria);
 	}
-	
-	public Optional<Categoria> update(long id, Categoria categoria) {
+	//TODO: corrigir comparação entre o id passado e o id da categoria passada no body
+	public Optional<Categoria> update(Long id, Categoria categoria) {
 		Optional<Categoria> c = categoriaRepository.findById(id);
 		
 		if(c.isPresent()) {
-			if(c.get().getCodigo() == categoria.getCodigo())
-				categoriaRepository.save(categoria);
-			else
-				return Optional.empty();
+			categoriaRepository.save(categoria);
+			return c;
 		}
 		
-		return c;
+		return Optional.empty();
 	}
 	
 	public Optional<Categoria> getById(long id) {
