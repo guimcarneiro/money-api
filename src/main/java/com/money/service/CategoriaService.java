@@ -24,7 +24,8 @@ public class CategoriaService {
 	public Categoria save(Categoria categoria) {
 		return categoriaRepository.save(categoria);
 	}
-	//TODO: corrigir comparação entre o id passado e o id da categoria passada no body
+
+	//Conferir se a categoria é a mesma do que já está cadastrada
 	public Categoria update(Long id, Categoria categoriaAtualizada) {
 		Optional<Categoria> categoriaExistente = categoriaRepository.findById(id);
 		
@@ -43,14 +44,14 @@ public class CategoriaService {
 	public Categoria getById(Long id) {
 		Optional<Categoria> categoriaExistente = categoriaRepository.findById(id);
 		
-		if(categoriaExistente.isPresent())
+		if(!categoriaExistente.isPresent())
 			throw new CategoriaNaoEncontradaException();
 		
 		Categoria categoriaRetornada = categoriaExistente.get();
 		return categoriaRetornada;
 	}
 	
-	public void deleteById(long id){
+	public void deleteById(Long id){
 		Optional<Categoria> categoriaExistente = categoriaRepository.findById(id);
 		
 		if(!categoriaExistente.isPresent())

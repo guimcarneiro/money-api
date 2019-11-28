@@ -2,6 +2,7 @@ package com.money.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,10 +11,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="categoria")
-public class Categoria implements Serializable {
-	
-	private static final long serialVersionUID = -3505985952291451921L;
+@Table(name="pessoa")
+public class Pessoa implements Serializable{
+
+	private static final long serialVersionUID = 6929656392699253611L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +22,15 @@ public class Categoria implements Serializable {
 	
 	@NotNull
 	private String nome;
+	
+	@NotNull
+	private Boolean ativo;
+	
+	@Embedded
+	private Endereco endereco;
 
 	public Long getCodigo() {
 		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -36,6 +39,22 @@ public class Categoria implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
@@ -54,7 +73,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Pessoa other = (Pessoa) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
