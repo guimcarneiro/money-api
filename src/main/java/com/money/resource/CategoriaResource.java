@@ -1,7 +1,6 @@
 package com.money.resource;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,37 +30,30 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> saveCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
 		Categoria categoriaSalva = categoriaService.save(categoria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> updateCategoria(@PathVariable long id, @RequestBody Categoria categoria){
-		Optional<Categoria> c = categoriaService.update(id, categoria);
+	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria){
+		Categoria categoriaRetornada = categoriaService.update(id, categoria);
 		
-		if(c.isPresent())
-			return ResponseEntity.status(HttpStatus.CREATED).body(c.get());
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRetornada);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> getCategoriaById(@PathVariable("id") Long id){
-		Optional<Categoria> c = categoriaService.getById(id);
-		if(c.isPresent())
-			return ResponseEntity.status(HttpStatus.OK).body(c.get());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	public ResponseEntity<Categoria> getById(@PathVariable("id") Long id){
+		Categoria categoriaRetornada = categoriaService.getById(id);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(categoriaRetornada);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Categoria> deleteCategoriaById(@PathVariable Long id){
-		Optional<Categoria> c = categoriaService.deleteById(id);
+	public ResponseEntity<Categoria> deleteById(@PathVariable Long id){
+		categoriaService.deleteById(id);
 		
-		if(c.isPresent())
-			return ResponseEntity.status(HttpStatus.OK).build();
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
 }
