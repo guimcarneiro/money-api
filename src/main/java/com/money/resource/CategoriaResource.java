@@ -33,25 +33,25 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> saveCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
 		Categoria categoriaSalva = categoriaService.save(categoria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> updateCategoria(@PathVariable Long id, @RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> update(@PathVariable Long id, @RequestBody Categoria categoria){
 		Categoria categoriaAtualizada = categoriaService.update(id, categoria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaAtualizada);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> getCategoriaById(@PathVariable("id") Long id){
+	public ResponseEntity<Categoria> getById(@PathVariable("id") Long id){
 		Categoria categoriaRetornada = categoriaService.getById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(categoriaRetornada);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Categoria> deleteCategoriaById(@PathVariable Long id){
+	public ResponseEntity<Categoria> deleteById(@PathVariable Long id){
 		categoriaService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
