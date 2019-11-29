@@ -47,7 +47,4 @@ public class PessoaResource {
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
-	//TODO: update
-	//TODO: metodos do Service
-	
 }
