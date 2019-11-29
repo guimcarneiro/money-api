@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.money.exception.PessoaNaoEncontradaException;
+import com.money.exception.PessoaInexistenteOuInativaException;
 import com.money.model.Pessoa;
 import com.money.repository.PessoaRepository;
 
@@ -21,7 +21,7 @@ public class PessoaService {
 	}
 	
 	public Pessoa getById(Long id) {
-		return pessoaRepository.findById(id).orElseThrow(() -> new PessoaNaoEncontradaException());
+		return pessoaRepository.findById(id).orElseThrow(() -> new PessoaInexistenteOuInativaException());
 	}
 	
 }
