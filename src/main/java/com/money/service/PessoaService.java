@@ -7,9 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.money.exception.CategoriaNaoEncontradaException;
 import com.money.exception.PessoaInexistenteOuInativaException;
-import com.money.model.Categoria;
 import com.money.model.Pessoa;
 import com.money.repository.PessoaRepository;
 
